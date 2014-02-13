@@ -1,0 +1,1 @@
+Light server for Restful controllers. Based on Express, Socket.io, node-orm2.
