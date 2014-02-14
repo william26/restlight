@@ -7,7 +7,7 @@ This Nodejs micro framework allows you to create a simple REST backend to suppor
 To install, simply run :
 
 ```sh
-$ npm install restlight
+$ npm install -g restlight
 ```
 
 > RESTlight is based on Express, Socket.io and node-orm2.
