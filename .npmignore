@@ -1,5 +1,5 @@
-./config/*
-./controllers/*
-./models/*
-./views/*
-./public/*
+./config
+./controllers
+./models
+./views
+./public

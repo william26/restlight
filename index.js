@@ -24,6 +24,17 @@ module.exports = function () {
     app.use(express.logger('dev'));
     app.use(express.json());
     app.use(express.urlencoded());
+    app.use(require('connect-multiparty')());
+    app.use(function(req, res, next){
+        if (req.is('text/*')) {
+            req.text = '';
+            req.setEncoding('utf8');
+            req.on('data', function(chunk){ req.text += chunk });
+            req.on('end', next);
+        } else {
+            next();
+        }
+    });
     app.use(express.methodOverride());
     app.use(express.cookieParser(config.secret));
     app.use(express.session());

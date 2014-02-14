@@ -13,11 +13,29 @@ $ npm install restlight
 > RESTlight is based on Express, Socket.io and node-orm2.
 
 For everything to work properly, make sure you've installed all the right drivers for the database.
-For example, if you wish to use it with MongoDB, don't forget to run
+For example, if you wish to use it with MongoDB, don't forget to run :
 
 ```sh
 $ npm install mongodb
 ```
+
+Also make sure the database is running on the connection string you set in the configuration
+when you try to start your app, otherwise, the server will crash.
+
+###Configuration
+
+To configure your project, go to configs/index.js
+
+```javascript
+module.exports = {
+    port: 3000,
+    db_connection_string: "mongodb://172.17.0.2:27017/restlight",
+    secret: 'your secret here'
+};
+```
+
+There you can edit the port and the database connection string. Refer [top node-orm2's documentation][1] for available
+database drivers.
 
 ###Project creation
 
