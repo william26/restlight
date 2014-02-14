@@ -7,7 +7,7 @@ This Nodejs micro framework allows you to create a simple REST backend to suppor
 To install, simply run :
 
 ```sh
-    $ npm install restlight
+$ npm install restlight
 ```
 
 > RESTlight is based on Express, Socket.io and node-orm2.
@@ -16,7 +16,7 @@ For everything to work properly, make sure you've installed all the right driver
 For example, if you wish to use it with MongoDB, don't forget to run
 
 ```sh
-    $ npm install mongodb
+$ npm install mongodb
 ```
 
 ###Project creation
@@ -24,7 +24,7 @@ For example, if you wish to use it with MongoDB, don't forget to run
 To create your first project, run the following command, and answer the questions.
 
 ```sh
-    $ restlight init
+$ restlight init
 ```
 
 A folder named after your project will be created in the current directory.
@@ -42,7 +42,7 @@ In this folder, you'll find :
 To run your app, simply call the following command in the project directory :
 
 ```sh
-    $ restlight start
+$ restlight start
 ```
 
 It will run on the port 3000 by default (this is easily changeable in config/index.js).
@@ -56,7 +56,7 @@ You can easily create controllers and models via the cli command.
 Run the following command to create a new empty controller :
 
 ```sh
-    $ restlight controller
+$ restlight controller
 ```
 
 You will be asked the name that you want to give this controller. The controller will then be created in the controllers/
@@ -65,23 +65,23 @@ folder.
 An empty controller looks like this :
 
 ```javascript
-    module.exports = {
-        index: function (req, res) {
-            req.json([]);
-        },
-        show: function (req, res) {
-            req.json({});
-        },
-        create: function (req, res) {
-            req.json({});
-        },
-        update: function (req, res) {
-            req.json({});
-        },
-        destroy: function (req, res) {
-            req.send(200, 'success');
-        }
-    };
+module.exports = {
+    index: function (req, res) {
+        req.json([]);
+    },
+    show: function (req, res) {
+        req.json({});
+    },
+    create: function (req, res) {
+        req.json({});
+    },
+    update: function (req, res) {
+        req.json({});
+    },
+    destroy: function (req, res) {
+        req.send(200, 'success');
+    }
+};
 ```
 
 By default, only crud methods are created. You can call these methods via the usual REST HTTP verbs :
@@ -102,7 +102,7 @@ You can add additional methods which will be callable that way :
 Run the following command to create a new model :
 
 ```sh
-    $ restlight model
+$ restlight model
 ```
 
 You will be asked the following questions :
