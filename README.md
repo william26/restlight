@@ -1,6 +1,9 @@
 ##RESTlight
 
-This Nodejs micro framework allows you to create a simple REST backend to support a single page front-end application.
+This Nodejs micro framework allows you to create small websites or web apps, with a classic routing system, or with a
+single page front-end application.
+
+The framework gives you a full RESTful API engine to manage your data from webservices.
 
 ####Installation
 
@@ -67,20 +70,20 @@ It will run on the port 3000 by default (this is easily changeable in config/ind
 
 ###Scaffolding
 
-You can easily create controllers and models via the cli command.
+You can easily create API endpoints and models via the cli command.
 
-####Create a controller
+####Create an API endpoint
 
-Run the following command to create a new empty controller :
+Run the following command to create a new empty API endpoint :
 
 ```sh
-$ restlight controller
+$ restlight endpoint
 ```
 
-You will be asked the name that you want to give this controller. The controller will then be created in the controllers/
+You will be asked the name that you want to give this endpoint. The endpoint will then be created in the webservices/
 folder.
 
-An empty controller looks like this :
+An empty endpoint looks like this :
 
 ```javascript
 module.exports = {
@@ -104,15 +107,15 @@ module.exports = {
 
 By default, only crud methods are created. You can call these methods via the usual REST HTTP verbs :
 
-- GET /UserController --> controllers/UsersController.js:index
-- GET /UserController/:id --> controllers/UsersController.js:show
-- POST /UserController --> controllers/UsersController.js:create
-- PUT /UserController/:id --> controllers/UsersController.js:update
-- DELETE /UserController/:id --> controllers/UsersController.js:destroy
+- GET /User --> controllers/UserEndpoint.js:index
+- GET /User/:id --> controllers/UserEndpoint.js:show
+- POST /User --> controllers/UserEndpoint.js:create
+- PUT /User/:id --> controllers/UserEndpoint.js:update
+- DELETE /User/:id --> controllers/UserEndpoint.js:destroy
 
 You can add additional methods which will be callable that way :
 
-- ANY_VERB /UserController/action/method_name
+- ANY_VERB /User/action/method_name
 
 
 ####Create a model
@@ -126,7 +129,7 @@ $ restlight model
 You will be asked the following questions :
 
 - The name of the model
-- Do you want to create an associated controller (and if so, do you want it scaffolded)
+- Do you want to create an associated API endpoint (and if so, do you want it scaffolded)
 - Do you want to add fields (and if so, which ones, and of which types)
 
 Models are created in the models folder.
@@ -135,6 +138,57 @@ For more information about the structure of the model, please refer to [node-orm
 more than I can here :).
 
 You can access created models and their data in controllers through the **req** parameter, as explained in their doc.
+
+### Routes
+
+If you want to create a classic website with different server-side compiled templates, inserted into a layout, you can add
+custom routes in the routes/index.js file.
+
+Routes look like this :
+
+```javascript
+module.exports = {
+    '/': function (req, res) {
+        res.render('index', {
+            data: 'to',
+            compile: 'the',
+            inner: 'template'
+        });
+    }
+};
+```
+
+In that case, the route renders the template views/index.hjs within the default layout, views/layouts/default.hjs.
+
+**Setting your layout**
+
+By default, the layout is the file called views/layouts/default.hjs.
+
+You can set another layout stored in the same directory directly in the route callback :
+
+```javascript
+    //...
+    '/myroute': function (req, res) {
+        res.layout = 'custom';
+        res.render('index', {
+            data: 'to',
+            compile: 'the',
+            inner: 'template'
+        });
+    }
+    //...
+```
+
+In that case, the layout will be views/layouts/custom.hjs.
+
+All you need to do in the layout template is to set where the inner view has to be rendered :
+
+
+```html
+    <div id="content">
+        <%& content %> <!-- This renders the view specified in the res.render() method here -->
+    </div>
+```html
 
 ###Contributing
 
