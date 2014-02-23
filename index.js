@@ -14,12 +14,11 @@ module.exports = function () {
     var orm = require('orm');
 
     var app = express();
+    var routes = require(path.join(__dirname, 'lib', 'routes'));
     require('./lib/models_register')(app);
 
 // all environments
     app.set('port', process.env.PORT || 3000);
-    app.set('views', path.join(__dirname, 'views'));
-    app.set('view engine', 'hjs');
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.json());
@@ -35,21 +34,32 @@ module.exports = function () {
             next();
         }
     });
+    app.use(routes.middleware(app));
+    
+
     app.use(express.methodOverride());
     app.use(express.cookieParser(config.secret));
     app.use(express.session());
-    app.use(app.router);
+    
+    app.set('views', path.join(process.cwd(), 'views'));
+    app.set('view engine', 'hjs');
+    app.locals.delimiters = '<% %>';
+    
     app.use(require('less-middleware')({ src: path.join(process.cwd(), 'public') }));
     app.use(express.static(path.join(process.cwd(), 'public')));
+
 
 // development only
     if ('development' == app.get('env')) {
         app.use(express.errorHandler());
     }
 
-    app.get('/', routes.index);
+    
 
-    require(path.join(__dirname, 'lib', 'controllers_register'))(app);
+    require(path.join(__dirname, 'lib', 'endpoints_register'))(app);
+    // require(path.join(__dirname, 'lib', 'views_register'))(app);
+    routes.register(app);
+    app.use(routes.unmatched(app));
 
     var server = http.createServer(app);
 

@@ -6,3 +6,4 @@ controllers/*
 config/*
 public/*
 views/*
+*.sublime*

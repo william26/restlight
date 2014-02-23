@@ -1,7 +1,7 @@
 {
   "name": "restlight",
   "description": "Light server for Restful controllers. Based on Express, Socket.io, node-orm2.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "bin": {
     "restlight": "cli.js"
   },
@@ -16,7 +16,8 @@
     "commander": "~2.1.0",
     "inquirer": "~0.4.0",
     "handlebars": "~2.0.0-alpha.1",
-    "connect-multiparty": "~1.0.3"
+    "connect-multiparty": "~1.0.3",
+    "hjs": "*"
   },
   "author": {
     "name": "Antoine Jackson",

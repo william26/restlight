@@ -8,7 +8,7 @@ var generation = require('./lib/generation');
 program.version(pkg.version)
     .option('start', 'Start application')
     .option('init', 'Init a new application')
-    .option('controller', 'Create a controller')
+    .option('endpoint', 'Create an API endpoint for models')
     .option('model', 'Create a model').parse(process.argv);
 
 if (program.start) {
@@ -16,8 +16,10 @@ if (program.start) {
     require('./index.js')();
 } else if (program.init) {
     generation.init_project();
-} else if (program.controller) {
-    generation.create_controller();
+} else if (program.endpoint) {
+    generation.create_endpoint();
 } else if (program.model) {
     generation.create_model();
+} else if (program.controller) {
+	generation.create_controller();
 }
