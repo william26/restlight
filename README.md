@@ -188,7 +188,7 @@ All you need to do in the layout template is to set where the inner view has to 
     <div id="content">
         <%& content %> <!-- This renders the view specified in the res.render() method here -->
     </div>
-```html
+```
 
 ###Contributing
 
