@@ -1,7 +1,7 @@
 {
   "name": "restlight",
   "description": "Light server for Restful controllers. Based on Express, Socket.io, node-orm2.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "bin": {
     "restlight": "cli.js"
   },
