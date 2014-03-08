@@ -48,9 +48,7 @@ module.exports = function() {
     app.set('view engine', 'hjs');
     app.locals.delimiters = '<% %>';
 
-    app.use(require('less-middleware')({
-        src: path.join(process.cwd(), 'public')
-    }));
+    app.use(require('less-middleware')(path.join(process.cwd(), 'public')));
     app.use(express.static(path.join(process.cwd(), 'public')));
 
 
